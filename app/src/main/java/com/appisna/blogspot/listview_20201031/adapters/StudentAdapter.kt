@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.appisna.blogspot.listview_20201031.R
 import com.appisna.blogspot.listview_20201031.datas.Student
+import java.util.*
+import kotlin.collections.ArrayList
 
 class StudentAdapter(
     val mContext: Context,
@@ -46,8 +48,12 @@ class StudentAdapter(
         nameTxt.text = studentData.name
         addressTxt.text = studentData.address
         //생년을 가지고 그대로 찍으면 오류. 나이로 변환해야 함. 2020년 나이.
+        var age = 2020 - studentData.birthYear + 1
 
-        val age = 2020 - studentData.birthYear + 1
+        //앱을 킨 시점 나이 구하기
+        val now = Calendar.getInstance()
+
+        age = now.get(Calendar.YEAR) - studentData.birthYear + 1
         ageTxt.text = "${age}세"
 
 
