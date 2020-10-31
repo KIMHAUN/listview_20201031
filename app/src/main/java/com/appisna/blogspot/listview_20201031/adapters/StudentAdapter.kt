@@ -25,6 +25,7 @@ class StudentAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         var tempRow = convertView
+        //돌려막기 할 게 없을 때 inflate(그린다)! 있을 때는 안한다. => OOM 방지
         if(tempRow == null){
             //현재 줄이 널일 때
             //inflate : xml을 data화??
