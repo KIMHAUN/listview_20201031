@@ -1,5 +1,6 @@
 package com.appisna.blogspot.listview_20201031
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     //어댑터는 멤버변수로 만드는 게 향후 코딩에 편리.
     //하지만 멤버변수로 만들 때 초기화하면 앱 실행시 튕김.
     // 멤버변수로 만들되, 초기화는 나중에 하는 이유.
+    
+    var REQ_FOR_STUDENT_INFO = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +75,14 @@ class MainActivity : AppCompatActivity() {
 
             Log.d("삭제 후 개수", mStudentList.size.toString())
             return@setOnItemLongClickListener true
+        }
+        
+//        학생 추가하기 버튼 이벤트
+        makeNewStudentBtn.setOnClickListener { 
+            val myIntent = Intent(this, EditStudentInfoActivity::class.java)
+            //그냥 액티비티 아니고 결과를 바람
+            startActivityForResult(myIntent, REQ_FOR_STUDENT_INFO)
+            
         }
 
 
