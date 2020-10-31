@@ -58,8 +58,18 @@ class MainActivity : AppCompatActivity() {
             val longClickedStudent = mStudentList[position]
 
             Log.d("롱클릭 이벤트", longClickedStudent.name)
+            Log.d("삭제 전 개수", mStudentList.size.toString())
             //Boolean 값으로 결과를 리턴 해야 함.(안한 상태에서는 에러 처리)
             //false일 때는 클릭 이벤트도 실행함
+
+            //오래 눌린 학생을 목록에서 제거.
+            //mStudentList.remove(longClickedStudent) //학생을 삭제하자.
+            mStudentList.removeAt(position) // 해당 위치의 데이터 삭제
+
+            //삭제 후 어댑터에게 변경사항 노티. 새로 반영 해라.
+            mAdapter.notifyDataSetChanged()
+
+            Log.d("삭제 후 개수", mStudentList.size.toString())
             return@setOnItemLongClickListener true
         }
 
