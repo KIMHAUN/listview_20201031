@@ -45,8 +45,10 @@ class StudentAdapter(
 
         nameTxt.text = studentData.name
         addressTxt.text = studentData.address
-        //생년을 가지고 그대로 찍으면 오류. 나이로 변환해야 함.
-        ageTxt.text = "${studentData.birthYear}세"
+        //생년을 가지고 그대로 찍으면 오류. 나이로 변환해야 함. 2020년 나이.
+
+        val age = 2020 - studentData.birthYear + 1
+        ageTxt.text = "${age}세"
 
 
         return row
