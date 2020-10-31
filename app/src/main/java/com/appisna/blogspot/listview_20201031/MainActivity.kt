@@ -2,13 +2,15 @@ package com.appisna.blogspot.listview_20201031
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.appisna.blogspot.listview_20201031.adapters.StudentAdapter
 import com.appisna.blogspot.listview_20201031.datas.Student
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     //멤버변수
     val mStudentList = ArrayList<Student>();
 
-
+    lateinit var mAdapter : StudentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         mStudentList.add(Student("유세윤", "안산", 1997))
         mStudentList.add(Student("장윤주", "화성", 1990))
 
+        //context : 어떤 화면인가? 어떤 화면에서 이 어뎁터를 쓰는가
+        //resId : res폴더. 숫자 변환됨.
+        //mList : 어떤 목록을 뿌릴건가요?
+        mAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
+
+        //이 어뎁터 xml과 연결하기
+        studentList.adapter = mAdapter
 
 
 
