@@ -19,7 +19,12 @@ class MainActivity : AppCompatActivity() {
         mStudentList.add(Student("조경진", "은평", 1988))
         mStudentList.add(Student("박성윤", "연수", 1996))
         mStudentList.add(Student("조윤주", "구로", 1996))
-
+        mStudentList.add(Student("아이유", "강남", 1993))
+        mStudentList.add(Student("박보검", "도봉", 1993))
+        mStudentList.add(Student("차은우", "금천", 1997))
+        mStudentList.add(Student("박보영", "철원", 1990))
+        mStudentList.add(Student("유세윤", "안산", 1997))
+        mStudentList.add(Student("장윤주", "화성", 1990))
 
 
 
