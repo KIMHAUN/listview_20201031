@@ -1,5 +1,6 @@
 package com.appisna.blogspot.listview_20201031
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -88,4 +89,29 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    //가져온 정보 반영하기
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //학생정보 가지러 갔다온 거 맞니?
+        if(requestCode == REQ_FOR_STUDENT_INFO) {
+            //확인 누른거 맞니?
+            if (resultCode == Activity.RESULT_OK) {
+                //첨부한 데이터(data?)를 가지고 학생을 만들어서 목록에 추가하자.
+                //data? -> data!!
+                val newStudent = Student(
+                    data!!.getStringExtra("name")!!,
+                    "${data!!.getStringExtra("largeArea")} ${data!!.getStringExtra("smallArea")}",
+                    data!!.getIntExtra("birthYear", 1970)
+                )
+
+                //add to list
+                mStudentList.add(newStudent)
+                mAdapter.notifyDataSetChanged()
+
+            }
+        }
+    }
+
 }
