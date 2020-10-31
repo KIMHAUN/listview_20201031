@@ -66,7 +66,8 @@ class MainActivity : AppCompatActivity() {
             //mStudentList.remove(longClickedStudent) //학생을 삭제하자.
             mStudentList.removeAt(position) // 해당 위치의 데이터 삭제
 
-            //삭제 후 어댑터에게 변경사항 노티. 새로 반영 해라.
+            //삭제 후 어댑터에게 변경사항 노티. 새로 반영 해라.(습관적으로 같이 적어주자).
+            //lateinit var을 사용하는 이유.
             mAdapter.notifyDataSetChanged()
 
             Log.d("삭제 후 개수", mStudentList.size.toString())
