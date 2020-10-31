@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.appisna.blogspot.listview_20201031.R
 import com.appisna.blogspot.listview_20201031.datas.Student
 
@@ -32,6 +33,21 @@ class StudentAdapter(
         val row = tempRow!!
         //tempRow가 절대 null이 아니라면 대입하자.
         //완성된 row를 getView의 결과로 선정.
+        //row가 바로 결과가 되지 말고 가공을 거친 후에 결과가 되게 하자.(row변수에 담겨있는 xml기반 객체의 내용물을 변경해주자.
+
+
+        val nameTxt = row.findViewById<TextView>(R.id.nameTxt);
+        val ageTxt = row.findViewById<TextView>(R.id.ageTxt);
+        val addressTxt = row.findViewById<TextView>(R.id.addressTxt);
+
+        //뿌려줄 근거 데이터
+        val studentData = mList[position]
+
+        nameTxt.text = studentData.name
+        addressTxt.text = studentData.address
+        //생년을 가지고 그대로 찍으면 오류. 나이로 변환해야 함.
+        ageTxt.text = "${studentData.birthYear}세"
+
 
         return row
     }

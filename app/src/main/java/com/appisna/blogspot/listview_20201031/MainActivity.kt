@@ -11,6 +11,9 @@ class MainActivity : AppCompatActivity() {
     val mStudentList = ArrayList<Student>();
 
     lateinit var mAdapter : StudentAdapter
+    //어댑터는 멤버변수로 만드는 게 향후 코딩에 편리.
+    //하지만 멤버변수로 만들 때 초기화하면 앱 실행시 튕김.
+    // 멤버변수로 만들되, 초기화는 나중에 하는 이유.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,11 @@ class MainActivity : AppCompatActivity() {
         mAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
 
         //이 어뎁터 xml과 연결하기
+        //객체화된 어댑터 변수를 리스트뷰 변수의 어댑터로 동작하게 지정
+        //리스트뷰 변수.adapter = 어댑터 변수
         studentList.adapter = mAdapter
+
+
 
 
 
