@@ -2,6 +2,7 @@ package com.appisna.blogspot.listview_20201031
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.appisna.blogspot.listview_20201031.adapters.StudentAdapter
 import com.appisna.blogspot.listview_20201031.datas.Student
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,7 +42,15 @@ class MainActivity : AppCompatActivity() {
         //리스트뷰 변수.adapter = 어댑터 변수
         studentList.adapter = mAdapter
 
+        studentList.setOnItemClickListener { parent, view, position, id ->
+            //position : 눌린 위치가 어디인지 알려주는 역할
+            //위치에 맞는 학생의 이름을 토스트 출력
+            val clickedStudent = mStudentList[position]
 
+            Toast.makeText(this, clickedStudent.name, Toast.LENGTH_SHORT).show()
+
+
+        }
 
 
 

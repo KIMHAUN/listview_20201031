@@ -52,10 +52,8 @@ class StudentAdapter(
 
         //앱을 킨 시점 나이 구하기
         val now = Calendar.getInstance()
-
         age = now.get(Calendar.YEAR) - studentData.birthYear + 1
         ageTxt.text = "${age}세"
-
 
         return row
     }
