@@ -1,6 +1,8 @@
 package com.appisna.blogspot.listview_20201031
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -61,20 +63,35 @@ class MainActivity : AppCompatActivity() {
             //해당 줄을 길게 누르면 실행할 코드
             val longClickedStudent = mStudentList[position]
 
+            //정말로 삭제할지 묻기 => 경고창을 만들어서 띄워주자.
+            //확인이 눌렸을 때만 제거.
+            val alert = AlertDialog.Builder(this)
+            alert.setTitle("학생 명부 삭제")
+            alert.setMessage("정말 해당 학생을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+                //확인이 눌렸을 때 할 일
+                //오래 눌린 학생을 목록에서 제거.
+                //mStudentList.remove(longClickedStudent) //학생을 삭제하자.
+                mStudentList.removeAt(position) // 해당 위치의 데이터 삭제
+
+                //삭제 후 어댑터에게 변경사항 노티. 새로 반영 해라.(습관적으로 같이 적어주자).
+                //lateinit var을 사용하는 이유.
+                mAdapter.notifyDataSetChanged()
+
+                Log.d("삭제 후 개수", mStudentList.size.toString())
+            })
+            // 할일이 없어요
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+
+
             Log.d("롱클릭 이벤트", longClickedStudent.name)
             Log.d("삭제 전 개수", mStudentList.size.toString())
             //Boolean 값으로 결과를 리턴 해야 함.(안한 상태에서는 에러 처리)
             //false일 때는 클릭 이벤트도 실행함
 
-            //오래 눌린 학생을 목록에서 제거.
-            //mStudentList.remove(longClickedStudent) //학생을 삭제하자.
-            mStudentList.removeAt(position) // 해당 위치의 데이터 삭제
 
-            //삭제 후 어댑터에게 변경사항 노티. 새로 반영 해라.(습관적으로 같이 적어주자).
-            //lateinit var을 사용하는 이유.
-            mAdapter.notifyDataSetChanged()
-
-            Log.d("삭제 후 개수", mStudentList.size.toString())
             return@setOnItemLongClickListener true
         }
         
