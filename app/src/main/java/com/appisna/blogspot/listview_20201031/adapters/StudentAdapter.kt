@@ -18,22 +18,21 @@ class StudentAdapter(
 
     val inf = LayoutInflater.from(mContext)
 
+    //getView함수 오버라이딩 => 자동 작성되는 return문 삭제함.
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         var tempRow = convertView
         if(tempRow == null){
             //현재 줄이 널일 때
-            //inflate : xml
+            //inflate : xml을 data화??
             tempRow = inf.inflate(R.layout.student_list_item, null)
+            //inf.inflate(R.layout.리스트아이템(한줄에 해당하는 파일, 부가정보는 없음.)
         }
 
         val row = tempRow!!
+        //tempRow가 절대 null이 아니라면 대입하자.
+        //완성된 row를 getView의 결과로 선정.
+
         return row
-
-
-
     }
-
-
-
 }
