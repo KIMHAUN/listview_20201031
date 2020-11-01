@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     //멤버변수
-    val mStudentList = ArrayList<Student>();
+    val mStudentList = ArrayList<Student>(); // 객체화
 
     lateinit var mAdapter : StudentAdapter
     //어댑터는 멤버변수로 만드는 게 향후 코딩에 편리.
@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //가져온 정보 반영하기
+    //Intent는 null일 수 있다.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -117,11 +118,18 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 //첨부한 데이터(data?)를 가지고 학생을 만들어서 목록에 추가하자.
                 //data? -> data!!
+                //!!한번 했으면 뒤에 거는 안해도 됨. 그래서 경고.
                 val newStudent = Student(
                     data!!.getStringExtra("name")!!,
-                    "${data!!.getStringExtra("largeArea")} ${data!!.getStringExtra("smallArea")}",
-                    data!!.getIntExtra("birthYear", 1970)
+                    "${data.getStringExtra("largeArea")} ${data.getStringExtra("smallArea")}",
+                    data.getIntExtra("birthYear", 1970)
                 )
+
+                //data?.getStringExtra
+                //data가 null이 아닐 때 실행하자.
+                //data!!.getStringExtra
+                //data는 null이 아니라고 우기기. null이 있을 가능성 제거하고 사용.
+
 
                 //add to list
                 mStudentList.add(newStudent)
